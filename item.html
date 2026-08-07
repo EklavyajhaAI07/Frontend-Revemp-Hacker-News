@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AMD acquires Taalas to boost inference performance | Hacker News</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <header class="site-header">
+    <nav class="nav-inner" aria-label="Primary">
+      <a href="index.html" class="wordmark">Hacker News</a>
+      <div class="nav-links">
+        <a href="index.html">new</a>
+        <span class="nav-sep">·</span>
+        <a href="#">past</a>
+        <span class="nav-sep">·</span>
+        <a href="#">comments</a>
+        <span class="nav-sep">·</span>
+        <a href="#">ask</a>
+        <span class="nav-sep">·</span>
+        <a href="#">show</a>
+        <span class="nav-sep">·</span>
+        <a href="#">jobs</a>
+      </div>
+      <div class="nav-actions">
+        <a href="#" class="btn btn-primary">Post it</a>
+        <a href="#" class="btn btn-ghost">Sign in</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main">
+    <article class="item-header trending">
+      <span class="trending-sticker">🔥 trending</span>
+      <div style="display:flex;gap:10px;align-items:flex-start;">
+        <button class="boost-chip" aria-label="Boost" aria-pressed="false"><span class="boost-icon">▲</span>boost</button>
+        <div style="flex:1;min-width:0;">
+          <div class="story-title-row">
+            <a href="https://www.theregister.com/systems/2026/08/06/amd-acquires-ai-chip-startup-taalas-to-boost-inference-performance-by-etching-models-into-silicon/5284344" class="story-title">AMD acquires Taalas to boost inference performance by etching models in silicon</a>
+            <span class="story-domain">(theregister.com)</span>
+          </div>
+          <div class="story-meta">
+            <span class="meta-chip hot">🔥 805 pts</span>
+            <span class="meta-chip">by <a href="#">@itvision</a></span>
+            <span class="meta-chip">20h ago</span>
+            <span class="meta-chip"><a href="#">hide</a></span>
+            <span class="meta-chip"><a href="https://www.theregister.com/systems/2026/08/06/amd-acquires-ai-chip-startup-taalas-to-boost-inference-performance-by-etching-models-into-silicon/5284344">article</a></span>
+            <span class="meta-chip">💬 611 comments</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <form class="comment-form" action="#" method="post">
+      <textarea name="text" placeholder="Add a comment…" aria-label="Comment text"></textarea>
+      <button type="submit" class="btn btn-primary">add comment</button>
+    </form>
+
+    <section class="comments-section" aria-label="Comments">
+      <h2 class="comments-heading">611 comments</h2>
+
+      <ul class="comment-thread">
+
+        <li class="comment">
+          <div class="comment-row">
+            <button class="boost-chip" aria-label="Boost comment" aria-pressed="false"><span class="boost-icon">▲</span></button>
+            <div class="comment-content">
+              <div class="comment-header">
+                <button class="comment-toggle" aria-expanded="true" aria-label="Collapse thread">[–]</button>
+                <a href="#">@chip_arch</a>
+                <span>·</span>
+                <span>312 pts</span>
+                <span>·</span>
+                <span>18h ago</span>
+                <span>·</span>
+                <a href="#" class="meta-action">hide</a>
+                <span>·</span>
+                <a href="#" class="meta-action">past</a>
+                <span>·</span>
+                <a href="#" class="meta-action">web</a>
+              </div>
+              <div class="comment-body">
+                <p>Etching models into silicon is the logical endpoint of the "specialize everything" trend. We've gone from general-purpose CPUs to GPUs to TPUs to ASICs, and now effectively hard-wiring weights. The interesting question is whether the model architecture freeze required for tape-out is acceptable given how fast the field moves.</p>
+                <p>My guess: this works brilliantly for inference at scale where you know exactly which model you'll run for the next 3–5 years. Training and research labs won't touch it.</p>
+              </div>
+            </div>
+          </div>
+          <ul class="comment-thread comment-replies">
+            <li class="comment">
+              <div class="comment-row">
+                <button class="boost-chip" aria-label="Boost comment" aria-pressed="false"><span class="boost-icon">▲</span></button>
+                <div class="comment-content">
+                  <div class="comment-header">
+                    <button class="comment-toggle" aria-expanded="true" aria-label="Collapse thread">[–]</button>
+                    <a href="#">@itvision</a>
+                    <span>·</span>
+                    <span>89 pts</span>
+                    <span>·</span>
+                    <span>17h ago</span>
+                  </div>
+                  <div class="comment-body">
+                    <p>That's exactly the tradeoff. Taalas isn't trying to replace H100 clusters for training — they're going after the "run Llama-70B for a billion users" problem where latency and $/token matter more than flexibility.</p>
+                  </div>
+                </div>
+              </div>
+              <ul class="comment-thread comment-replies">
+                <li class="comment">
+                  <div class="comment-row">
+                    <button class="boost-chip" aria-label="Boost comment" aria-pressed="false"><span class="boost-icon">▲</span></button>
+                    <div class="comment-content">
+                      <div class="comment-header">
+                        <button class="comment-toggle" aria-expanded="true" aria-label="Collapse thread">[–]</button>
+                        <a href="#">@skeptical_eng</a>
+                        <span>·</span>
+                        <span>41 pts</span>
+                        <span>·</span>
+                        <span>16h ago</span>
+                      </div>
+                      <div class="comment-body">
+                        <p>But what happens when the next architecture shift makes your etched weights obsolete? You're stuck with silicon that can't be repurposed. FPGA middle ground exists but never won at hyperscale.</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li class="comment">
+              <div class="comment-row">
+                <button class="boost-chip" aria-label="Boost comment" aria-pressed="false"><span class="boost-icon">▲</span></button>
+                <div class="comment-content">
+                  <div class="comment-header">
+                    <button class="comment-toggle" aria-expanded="true" aria-label="Collapse thread">[–]</button>
+                    <a href="#">@mlops_daily</a>
+                    <span>·</span>
+                    <span>56 pts</span>
+                    <span>·</span>
+                    <span>17h ago</span>
+                  </div>
+                  <div class="comment-body">
+                    <p>The Register article mentions 10–100x inference speedups. Even at the low end that's compelling for edge deployment. AMD gets a differentiated story vs NVIDIA's "just buy more H100s" playbook.</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </li>
+
+        <li class="comment">
+          <div class="comment-row">
+            <button class="boost-chip" aria-label="Boost comment" aria-pressed="false"><span class="boost-icon">▲</span></button>
+            <div class="comment-content">
+              <div class="comment-header">
+                <button class="comment-toggle" aria-expanded="true" aria-label="Collapse thread">[–]</button>
+                <a href="#">@amd_bull</a>
+                <span>·</span>
+                <span>198 pts</span>
+                <span>·</span>
+                <span>19h ago</span>
+                <span>·</span>
+                <a href="#" class="meta-action">hide</a>
+              </div>
+              <div class="comment-body">
+                <p>AMD has been quietly assembling an impressive AI stack: Xilinx for adaptive logic, now Taalas for etched inference. Lisa Su's playbook of disciplined M&A continues. This isn't a $50B vanity acquisition — it's a targeted bolt-on that fills a specific gap in their data center story.</p>
+              </div>
+            </div>
+          </div>
+          <ul class="comment-thread comment-replies">
+            <li class="comment">
+              <div class="comment-row">
+                <button class="boost-chip" aria-label="Boost comment" aria-pressed="false"><span class="boost-icon">▲</span></button>
+                <div class="comment-content">
+                  <div class="comment-header">
+                    <button class="comment-toggle" aria-expanded="true" aria-label="Collapse thread">[–]</button>
+                    <a href="#">@nvda_short</a>
+                    <span>·</span>
+                    <span>72 pts</span>
+                    <span>·</span>
+                    <span>18h ago</span>
+                  </div>
+                  <div class="comment-body">
+                    <p>NVDA's moat is CUDA + ecosystem lock-in, not raw silicon performance. AMD needs more than clever chips — they need developers to actually port workloads. ROCm progress has been real but slow.</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </li>
+
+        <li class="comment">
+          <div class="comment-row">
+            <button class="boost-chip" aria-label="Boost comment" aria-pressed="false"><span class="boost-icon">▲</span></button>
+            <div class="comment-content">
+              <div class="comment-header">
+                <button class="comment-toggle" aria-expanded="true" aria-label="Collapse thread">[–]</button>
+                <a href="#">@hardware_hobbyist</a>
+                <span>·</span>
+                <span>124 pts</span>
+                <span>·</span>
+                <span>19h ago</span>
+              </div>
+              <div class="comment-body">
+                <p>For those unfamiliar with Taalas: they literally print neural network weights into the chip layout during fabrication. Think of it as ROM for model parameters — zero memory bandwidth overhead for weights because they're physically part of the die. Wild stuff.</p>
+                <p>Previous discussion: <a href="#">https://news.ycombinator.com/item?id=48123456</a></p>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="comment">
+          <div class="comment-row">
+            <button class="boost-chip" aria-label="Boost comment" aria-pressed="false"><span class="boost-icon">▲</span></button>
+            <div class="comment-content">
+              <div class="comment-header">
+                <button class="comment-toggle" aria-expanded="true" aria-label="Collapse thread">[–]</button>
+                <a href="#">@pessimist_realist</a>
+                <span>·</span>
+                <span>67 pts</span>
+                <span>·</span>
+                <span>15h ago</span>
+              </div>
+              <div class="comment-body">
+                <p>Acquisition price not disclosed, which usually means "not embarrassing but not a home run either." AMD's investors will want to see revenue contribution within 2 quarters or this gets written off as R&amp;D spend.</p>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="comment">
+          <div class="comment-row">
+            <button class="boost-chip" aria-label="Boost comment" aria-pressed="false"><span class="boost-icon">▲</span></button>
+            <div class="comment-content">
+              <div class="comment-header">
+                <button class="comment-toggle" aria-expanded="true" aria-label="Collapse thread">[–]</button>
+                <a href="#">@edge_inference</a>
+                <span>·</span>
+                <span>45 pts</span>
+                <span>·</span>
+                <span>14h ago</span>
+              </div>
+              <div class="comment-body">
+                <p>The edge use case is underrated here. A phone SoC with an etched 7B model running at watt-level power would change mobile AI entirely. AMD doesn't make phone chips today but the IP could flow anywhere.</p>
+              </div>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="#">Guidelines</a>
+        <span class="footer-sep">|</span>
+        <a href="#">FAQ</a>
+        <span class="footer-sep">|</span>
+        <a href="#">Lists</a>
+        <span class="footer-sep">|</span>
+        <a href="https://github.com/HackerNews/API">API</a>
+        <span class="footer-sep">|</span>
+        <a href="#">Security</a>
+        <span class="footer-sep">|</span>
+        <a href="https://www.ycombinator.com/legal/">Legal</a>
+        <span class="footer-sep">|</span>
+        <a href="https://www.ycombinator.com/apply/">Apply to YC</a>
+        <span class="footer-sep">|</span>
+        <a href="mailto:hn@ycombinator.com">Contact</a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script>
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+    }
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>

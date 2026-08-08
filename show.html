@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hacker News</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <header class="site-header">
+    <nav class="nav-inner" aria-label="Primary">
+      <a target="_blank" rel="noopener noreferrer" href="index.html" class="wordmark">Hacker News</a>
+      <div class="nav-links">
+        <a target="_blank" rel="noopener noreferrer" href="index.html" id="nav-new" aria-current="page">new</a>
+        <span class="nav-sep">·</span>
+        <a target="_blank" rel="noopener noreferrer" href="past.html" id="nav-past">past</a>
+        <span class="nav-sep">·</span>
+        <a target="_blank" rel="noopener noreferrer" href="comments.html" id="nav-comments">comments</a>
+        <span class="nav-sep">·</span>
+        <a target="_blank" rel="noopener noreferrer" href="ask.html" id="nav-ask">ask</a>
+        <span class="nav-sep">·</span>
+        <a target="_blank" rel="noopener noreferrer" href="show.html" id="nav-show" aria-current="page">show</a>
+        <span class="nav-sep">·</span>
+        <a target="_blank" rel="noopener noreferrer" href="jobs.html" id="nav-jobs">jobs</a>
+      </div>
+      <div class="nav-actions">
+        <a target="_blank" rel="noopener noreferrer" href="submit.html" class="btn btn-primary" id="btn-post">Post it</a>
+        <a target="_blank" rel="noopener noreferrer" href="login.html" class="btn btn-ghost" id="btn-signin">Sign in</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main">
+    <p class="yc-banner">Show HN is a way to share something that you've made. <a target="_blank" rel="noopener noreferrer" href="#">Guidelines</a>.</p>
+    <ol class="feed-list">
+      <li class="story-card">
+        <div class="boost-wrap">
+          <button class="boost-chip" aria-label="Boost" aria-pressed="false"><span class="boost-icon">▲</span>boost</button>
+        </div>
+        <span class="rank-badge">01</span>
+        <div class="story-body">
+          <div class="story-title-row">
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/Wyzer-Lang/wyzer" class="story-title">Show HN: Wyzer – A memory-safe backend language with direct hardware synthesis</a>
+            <span class="story-domain">(github.com/wyzer-lang)</span>
+          </div>
+          <div class="story-meta">
+            <span class="meta-chip">🔥 101 pts</span>
+            <span class="meta-chip"><a target="_blank" rel="noopener noreferrer" href="#">@v0id_isgood</a></span>
+            <span class="meta-chip">4h ago</span>
+            <span class="meta-chip">💬 <a target="_blank" rel="noopener noreferrer" href="item.html">54</a></span>
+            <a target="_blank" rel="noopener noreferrer" href="#" class="meta-action">hide</a>
+          </div>
+        </div>
+      </li>
+      <li class="story-card">
+        <div class="boost-wrap">
+          <button class="boost-chip" aria-label="Boost" aria-pressed="false"><span class="boost-icon">▲</span>boost</button>
+        </div>
+        <span class="rank-badge">02</span>
+        <div class="story-body">
+          <div class="story-title-row">
+            <a target="_blank" rel="noopener noreferrer" href="https://textlog.cc/about" class="story-title">Show HN: textlog – A quiet, text-only microblogging platform, open-source, no JS</a>
+            <span class="story-domain">(textlog.cc)</span>
+          </div>
+          <div class="story-meta">
+            <span class="meta-chip">🔥 69 pts</span>
+            <span class="meta-chip"><a target="_blank" rel="noopener noreferrer" href="#">@stagas</a></span>
+            <span class="meta-chip">6h ago</span>
+            <span class="meta-chip">💬 <a target="_blank" rel="noopener noreferrer" href="item.html">23</a></span>
+            <a target="_blank" rel="noopener noreferrer" href="#" class="meta-action">hide</a>
+          </div>
+        </div>
+      </li>
+    </ol>
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a target="_blank" rel="noopener noreferrer" href="#">Guidelines</a>
+        <span class="footer-sep">|</span>
+        <a target="_blank" rel="noopener noreferrer" href="#">FAQ</a>
+        <span class="footer-sep">|</span>
+        <a target="_blank" rel="noopener noreferrer" href="#">Lists</a>
+        <span class="footer-sep">|</span>
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/HackerNews/API">API</a>
+        <span class="footer-sep">|</span>
+        <a target="_blank" rel="noopener noreferrer" href="#">Security</a>
+        <span class="footer-sep">|</span>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.ycombinator.com/legal/">Legal</a>
+        <span class="footer-sep">|</span>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.ycombinator.com/apply/">Apply to YC</a>
+        <span class="footer-sep">|</span>
+        <a target="_blank" rel="noopener noreferrer" href="mailto:hn@ycombinator.com">Contact</a>
+      </div>
+      <div class="footer-search">
+        <label for="search">Search:</label>
+        <input type="text" id="search" name="q" aria-label="Search">
+      </div>
+    </footer>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script>
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+    }
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>

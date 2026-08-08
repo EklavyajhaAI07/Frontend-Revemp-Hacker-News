@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hacker News</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <header class="site-header">
+    <nav class="nav-inner" aria-label="Primary">
+      <a target="_blank" rel="noopener noreferrer" href="index.html" class="wordmark">Hacker News</a>
+      <div class="nav-links">
+        <a target="_blank" rel="noopener noreferrer" href="index.html" id="nav-new" aria-current="page">new</a>
+        <span class="nav-sep">·</span>
+        <a target="_blank" rel="noopener noreferrer" href="past.html" id="nav-past">past</a>
+        <span class="nav-sep">·</span>
+        <a target="_blank" rel="noopener noreferrer" href="comments.html" id="nav-comments" aria-current="page">comments</a>
+        <span class="nav-sep">·</span>
+        <a target="_blank" rel="noopener noreferrer" href="ask.html" id="nav-ask">ask</a>
+        <span class="nav-sep">·</span>
+        <a target="_blank" rel="noopener noreferrer" href="show.html" id="nav-show">show</a>
+        <span class="nav-sep">·</span>
+        <a target="_blank" rel="noopener noreferrer" href="jobs.html" id="nav-jobs">jobs</a>
+      </div>
+      <div class="nav-actions">
+        <a target="_blank" rel="noopener noreferrer" href="submit.html" class="btn btn-primary" id="btn-post">Post it</a>
+        <a target="_blank" rel="noopener noreferrer" href="login.html" class="btn btn-ghost" id="btn-signin">Sign in</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main">
+    <p class="yc-banner">Viewing most recent comments from the community feed.</p>
+    <section class="comments-section" style="box-shadow: none; border: 1.5px solid var(--border);">
+      <ul class="comment-thread">
+        <li class="comment">
+          <div class="comment-row">
+            <button class="boost-chip" aria-label="Boost comment" aria-pressed="false"><span class="boost-icon">▲</span></button>
+            <div class="comment-content">
+              <div class="comment-header">
+                <a target="_blank" rel="noopener noreferrer" href="#">@chip_arch</a>
+                <span>on</span>
+                <a target="_blank" rel="noopener noreferrer" href="item.html">AMD acquires Taalas to boost inference performance</a>
+                <span>·</span>
+                <span>10m ago</span>
+              </div>
+              <div class="comment-body">
+                <p>Etching weights into ROM layout is the ultimate hardware specialization. I am excited to see if this lowers edge inference cost drastically enough for ambient computing.</p>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="comment" style="margin-top: var(--space-md); border-top: 1px dashed var(--border); padding-top: var(--space-sm);">
+          <div class="comment-row">
+            <button class="boost-chip" aria-label="Boost comment" aria-pressed="false"><span class="boost-icon">▲</span></button>
+            <div class="comment-content">
+              <div class="comment-header">
+                <a target="_blank" rel="noopener noreferrer" href="#">@meta_fan</a>
+                <span>on</span>
+                <a target="_blank" rel="noopener noreferrer" href="item.html">New Mexico court orders Meta to pay $567m</a>
+                <span>·</span>
+                <span>45m ago</span>
+              </div>
+              <div class="comment-body">
+                <p>This is a massive fine. It marks a shift in how courts view algorithmic social media optimization safety guidelines.</p>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a target="_blank" rel="noopener noreferrer" href="#">Guidelines</a>
+        <span class="footer-sep">|</span>
+        <a target="_blank" rel="noopener noreferrer" href="#">FAQ</a>
+        <span class="footer-sep">|</span>
+        <a target="_blank" rel="noopener noreferrer" href="#">Lists</a>
+        <span class="footer-sep">|</span>
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/HackerNews/API">API</a>
+        <span class="footer-sep">|</span>
+        <a target="_blank" rel="noopener noreferrer" href="#">Security</a>
+        <span class="footer-sep">|</span>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.ycombinator.com/legal/">Legal</a>
+        <span class="footer-sep">|</span>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.ycombinator.com/apply/">Apply to YC</a>
+        <span class="footer-sep">|</span>
+        <a target="_blank" rel="noopener noreferrer" href="mailto:hn@ycombinator.com">Contact</a>
+      </div>
+      <div class="footer-search">
+        <label for="search">Search:</label>
+        <input type="text" id="search" name="q" aria-label="Search">
+      </div>
+    </footer>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script>
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+    }
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>

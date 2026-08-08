@@ -4,6 +4,119 @@
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const hasGsap = typeof gsap !== 'undefined';
 
+  /* ── Client-side User Session Management ── */
+  const loggedInUser = localStorage.getItem('hn_username');
+
+  // Handle Login Page forms
+  const forms = document.querySelectorAll('.form-page form');
+  forms.forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const userInput = form.querySelector('input[name="username"]');
+      if (userInput && userInput.value.trim()) {
+        const username = userInput.value.trim();
+        localStorage.setItem('hn_username', username);
+        alert(`Successfully signed in as @${username}!`);
+        window.location.href = 'index.html';
+      }
+    });
+  });
+
+  // Handle Submission Page form
+  if (window.location.pathname.endsWith('submit.html')) {
+    const sForm = document.querySelector('.form-page form');
+    if (sForm) {
+      sForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const titleInput = document.getElementById('title');
+        if (titleInput && titleInput.value.trim()) {
+          alert('Story submitted successfully!');
+          window.location.href = 'index.html';
+        }
+      });
+    }
+  }
+
+  // Handle Sign out
+  document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('btn-signout')) {
+      e.preventDefault();
+      localStorage.removeItem('hn_username');
+      alert('Signed out successfully.');
+      window.location.href = 'index.html';
+    }
+  });
+
+  // Update navbar based on login state
+  const signinBtn = document.getElementById('btn-signin');
+  if (signinBtn) {
+    if (loggedInUser) {
+      const userContainer = document.createElement('div');
+      userContainer.className = 'user-profile-menu';
+      userContainer.style.display = 'flex';
+      userContainer.style.alignItems = 'center';
+      userContainer.style.gap = 'var(--space-xs)';
+      
+      const userSpan = document.createElement('span');
+      userSpan.className = 'meta-chip';
+      userSpan.style.margin = '0';
+      userSpan.style.fontWeight = 'bold';
+      userSpan.style.color = 'var(--accent-primary)';
+      userSpan.textContent = `@${loggedInUser}`;
+
+      const signoutBtn = document.createElement('button');
+      signoutBtn.className = 'btn btn-ghost btn-signout';
+      signoutBtn.style.padding = 'var(--space-xs) var(--space-sm)';
+      signoutBtn.textContent = 'Sign out';
+
+      userContainer.appendChild(userSpan);
+      userContainer.appendChild(signoutBtn);
+
+      signinBtn.parentNode.replaceChild(userContainer, signinBtn);
+    }
+  }
+
+  // Handle Post It button access
+  const postBtn = document.getElementById('btn-post');
+  if (postBtn) {
+    postBtn.addEventListener('click', function (e) {
+      if (!loggedInUser) {
+        e.preventDefault();
+        e.stopPropagation();
+        alert('Please sign in first to submit a story.');
+        window.open('login.html', '_blank');
+      }
+    });
+  }
+
+  // If on submit.html page and not logged in, force redirect to login
+  if (window.location.pathname.endsWith('submit.html') && !loggedInUser) {
+    alert('Please sign in first to access the submission page.');
+    window.location.href = 'login.html';
+  }
+
+  /* ── Requirement 4: Always open links in a new window ── */
+  function enforceNewWindowLinks() {
+    document.querySelectorAll('a').forEach(function (link) {
+      // Don't target blank if it's dynamic/signout actions
+      if (!link.classList.contains('btn-signout')) {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
+  }
+
+  // Intercept any click on anchor tags to guarantee opening in a new tab/window
+  document.addEventListener('click', function (e) {
+    const anchor = e.target.closest('a');
+    if (anchor && !anchor.classList.contains('btn-signout')) {
+      anchor.setAttribute('target', '_blank');
+      anchor.setAttribute('rel', 'noopener noreferrer');
+    }
+  }, true);
+
+  enforceNewWindowLinks();
+
   /* ── Sticky nav glass intensify on scroll ── */
   const header = document.querySelector('.site-header');
   if (header) {
@@ -14,17 +127,16 @@
     onScroll();
   }
 
-  /* ── GSAP: page entrance animations ── */
+  /* ── GSAP: page entrance fade animations (No scaling) ── */
   if (hasGsap && !prefersReducedMotion) {
     const cards = gsap.utils.toArray('.story-card');
     if (cards.length) {
       gsap.to(cards, {
         opacity: 1,
-        y: 0,
-        duration: 0.45,
-        stagger: 0.035,
+        duration: 0.35,
+        stagger: 0.025,
         ease: 'power2.out',
-        delay: 0.08,
+        delay: 0.05,
         onComplete: function () {
           cards.forEach(function (c) { c.classList.add('is-visible'); });
         }
@@ -38,103 +150,44 @@
     /* Item page: header + comments slide in */
     const itemHeader = document.querySelector('.item-header');
     if (itemHeader) {
-      gsap.from(itemHeader, { opacity: 0, y: -16, duration: 0.5, ease: 'power3.out' });
+      gsap.from(itemHeader, { opacity: 0, duration: 0.4, ease: 'power2.out' });
     }
 
     const commentForm = document.querySelector('.comment-form');
     if (commentForm) {
-      gsap.from(commentForm, { opacity: 0, y: 12, duration: 0.45, delay: 0.15, ease: 'power2.out' });
+      gsap.from(commentForm, { opacity: 0, duration: 0.4, delay: 0.1, ease: 'power2.out' });
     }
 
     const comments = gsap.utils.toArray('.comment-thread > .comment');
     if (comments.length) {
       gsap.from(comments, {
         opacity: 0,
-        x: -12,
-        duration: 0.4,
-        stagger: 0.07,
-        delay: 0.25,
+        duration: 0.35,
+        stagger: 0.05,
+        delay: 0.15,
         ease: 'power2.out'
       });
     }
-
-    /* Trending sticker wobble via GSAP (replaces CSS pulse when GSAP active) */
-    gsap.utils.toArray('.trending-sticker').forEach(function (sticker) {
-      sticker.style.animation = 'none';
-      gsap.to(sticker, {
-        rotation: -4,
-        scale: 1.06,
-        duration: 0.9,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut'
-      });
-    });
-
-    /* Ambient orbs slow parallax on scroll */
-    if (typeof ScrollTrigger !== 'undefined') {
-      const orbs = gsap.utils.toArray('.orb');
-      if (orbs.length) {
-        gsap.to(orbs[0], { y: 60, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1.2 } });
-        if (orbs[1]) gsap.to(orbs[1], { y: -50, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1.5 } });
-        if (orbs[2]) gsap.to(orbs[2], { x: -40, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1 } });
-      }
-    }
-
-    /* Magnetic hover on primary buttons */
-    document.querySelectorAll('.btn-primary').forEach(function (btn) {
-      btn.addEventListener('mousemove', function (e) {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        gsap.to(btn, { x: x * 0.18, y: y * 0.18, duration: 0.3, ease: 'power2.out' });
-      });
-      btn.addEventListener('mouseleave', function () {
-        gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
-      });
-    });
   } else {
     document.querySelectorAll('.story-card').forEach(function (c) {
       c.classList.add('is-visible');
     });
   }
 
-  /* ── Boost chips ── */
+  /* ── Boost chips toggling (No scale bounce) ── */
   document.querySelectorAll('.boost-chip').forEach(function (chip) {
     chip.addEventListener('click', function (e) {
       e.preventDefault();
       const wasBoosted = chip.classList.contains('boosted');
       chip.classList.toggle('boosted', !wasBoosted);
       chip.setAttribute('aria-pressed', String(!wasBoosted));
-
-      if (prefersReducedMotion) return;
-
-      if (hasGsap) {
-        gsap.fromTo(chip,
-          { scale: 1 },
-          { scale: 1.22, duration: 0.12, ease: 'power2.out', yoyo: true, repeat: 1 }
-        );
-        if (!wasBoosted) {
-          gsap.fromTo(chip.querySelector('.boost-icon'),
-            { y: 0 },
-            { y: -4, duration: 0.15, ease: 'power2.out', yoyo: true, repeat: 1 }
-          );
-        }
-      } else {
-        chip.classList.remove('bounce');
-        void chip.offsetWidth;
-        chip.classList.add('bounce');
-        chip.addEventListener('animationend', function handler() {
-          chip.classList.remove('bounce');
-          chip.removeEventListener('animationend', handler);
-        });
-      }
     });
   });
 
-  /* ── Collapsible comment threads (GSAP height slide) ── */
+  /* ── Collapsible comment threads ── */
   document.querySelectorAll('.comment-toggle').forEach(function (btn) {
-    btn.addEventListener('click', function () {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
       const comment = btn.closest('.comment');
       if (!comment) return;
 
@@ -154,7 +207,7 @@
             gsap.to(el, {
               height: 0,
               opacity: 0,
-              duration: 0.28,
+              duration: 0.25,
               ease: 'power2.inOut',
               onStart: function () {
                 el.style.overflow = 'hidden';
@@ -185,7 +238,7 @@
             gsap.to(el, {
               height: fullHeight,
               opacity: 1,
-              duration: 0.32,
+              duration: 0.28,
               ease: 'power2.out',
               onComplete: function () {
                 el.style.height = '';
@@ -204,30 +257,5 @@
       }
     });
   });
-
-  /* ── Story card hover tilt (subtle GSAP) ── */
-  if (hasGsap && !prefersReducedMotion) {
-    document.querySelectorAll('.story-card').forEach(function (card) {
-      card.addEventListener('mousemove', function (e) {
-        const rect = card.getBoundingClientRect();
-        const relX = (e.clientX - rect.left) / rect.width - 0.5;
-        const relY = (e.clientY - rect.top) / rect.height - 0.5;
-        gsap.to(card, {
-          rotateX: relY * -3,
-          rotateY: relX * 3,
-          transformPerspective: 600,
-          duration: 0.35,
-          ease: 'power2.out'
-        });
-      });
-      card.addEventListener('mouseleave', function () {
-        gsap.to(card, {
-          rotateX: 0,
-          rotateY: 0,
-          duration: 0.5,
-          ease: 'elastic.out(1, 0.4)'
-        });
-      });
-    });
-  }
 })();
+
